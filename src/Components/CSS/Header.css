@@ -1,0 +1,5 @@
+.banner {
+  height: 448px;
+  /* adjust the image full length */
+  object-fit: contain;
+}
