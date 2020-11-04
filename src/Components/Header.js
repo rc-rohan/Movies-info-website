@@ -10,7 +10,7 @@ const Header = () => {
 
   // todo:set interval for the repetative call of the trending movie
   let movieIndex = 1;
-  setInterval(() => {
+  // setInterval(() => {
     // if(movieIndex<trending?.length){
     //   setMovie(trending[movieIndex])
     //   movieIndex++;
@@ -20,11 +20,7 @@ const Header = () => {
     //   movieIndex=0;
     //   setMovie(trending[movieIndex])
     // }
-    // if(trending?.length)
-    //   setMovie(trending[movieIndex])
-      movieIndex++;
-      console.log( movieIndex);
-  }, 5000);
+    // }, 5000);
 
   const fetchData = async () => {
     const { data } = await axios.get(`${requests.baseTmdbURL}${requests.fetchTrending}`);
@@ -38,9 +34,7 @@ const Header = () => {
     fetchData();
   }, []);
 
-  const handleClick = () =>{
-    // function to change the page when the user clicks button
-  }
+
 
   return (
     <header
@@ -57,7 +51,7 @@ const Header = () => {
           <div className="banner__buttons">
             <button
               className="btn banner__details-page"
-              onClick={() => handleClick()}
+              onClick={() => handleClick(trending[0].id)}
             >
               See Details
             </button>
