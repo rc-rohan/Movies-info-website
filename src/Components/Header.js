@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./CSS/Header.css";
 import axios from "axios";
 import requests from "../requests";
+import {Redirect} from 'react-router-dom'
 
 const Header = () => {
   const [trending, setTrending] = useState([]);
@@ -31,6 +32,11 @@ const Header = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const handleClick = () =>{
+    // function to change the page when the user clicks button
+  }
+
   return (
     <header
       className="banner"
@@ -41,8 +47,13 @@ const Header = () => {
       }}
     >
       <h1 className="banner__name">{trending[0]?.original_title}</h1>
-      
-    <p className="banner__description">{trending[0]?.overview}</p>
+      <div className="banner__buttons">
+        <button className="btn banner__details-page" onClick={() => handleClick()}>
+          See Details
+        </button>
+        <button className="btn banner__trailer-link" onClick={()=>{}}>Youtube Trailer</button>
+      </div>
+      <p className="banner__description">{trending[0]?.overview}</p>
     </header>
   );
 };

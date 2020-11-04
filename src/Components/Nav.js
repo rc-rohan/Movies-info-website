@@ -4,7 +4,7 @@ const Nav = () => {
   return (
     <div>
       {/* Logo */}
-      {/* Favourites Section */}
+      {/* Favourites Section : store the watchlist movies into localstorage  */}
       {/* search Section */}
     </div>
   );
