@@ -1,0 +1,25 @@
+.row{
+  margin:2rem auto ;
+  padding: 1rem;
+  max-width: 90%;
+  border: 2px solid red;
+  font-size: 1.4rem;
+}
+.row__header{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border: 2px solid blue;
+}
+.row .row__content{
+  display: flex;
+}
+.row .movieCard{
+  margin: 1rem;
+  max-width: 20rem;
+  border: 2px solid red;
+}
+
+.row .movieCard .movieCard__image{
+  width: 15rem;
+}

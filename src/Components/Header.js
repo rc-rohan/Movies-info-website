@@ -20,7 +20,11 @@ const Header = () => {
     //   movieIndex=0;
     //   setMovie(trending[movieIndex])
     // }
-    // }, 5000);
+    // if(trending?.length)
+    //   setMovie(trending[movieIndex])
+      // movieIndex++;
+      // console.log( movieIndex);
+  // }, 5000);
 
   const fetchData = async () => {
     const { data } = await axios.get(`${requests.baseTmdbURL}${requests.fetchTrending}`);
@@ -35,6 +39,21 @@ const Header = () => {
   }, []);
 
 
+
+  // const API_KEY = "26b98914bdfa3dc71c2d2c964644b132";
+// async function fetchMovie (movie_id){
+//   const fetchMovieDetails= `/movie/${movie_id}?api_key=${API_KEY}&append_to_response=videos,images`;
+//     const {data} = axios.get(`${requests.baseTmdbURL}${fetchMovieDetails}`)
+//     console.log(data.results);
+//     const moviekey = data?.results?.videos?.results[0].key
+//     console.log(moviekey);
+//     return moviekey
+//   }
+
+  const handleClick = (movie_id) =>{
+    // function to change the page when the user clicks button
+
+  }
 
   return (
     <header

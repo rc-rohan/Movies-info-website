@@ -3,6 +3,7 @@ import React from 'react'
 function Search() {
   return (
     <div>
+      search movies
     {/* Search Page  */}
     {/* add sorting of the data here asc or desc and by year(if possible) also search option */}
 
