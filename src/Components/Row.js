@@ -3,6 +3,7 @@ import axios from "axios";
 import requests from "../requests";
 import { truncateString } from "../utils/utils";
 import "./CSS/Row.css";
+import { Redirect } from "react-router-dom";
 
 function Row({ fetchURL, title }) {
   console.log("hello");
@@ -32,14 +33,20 @@ function Row({ fetchURL, title }) {
       </div>
       <div className="row__content">
         {movies.map((movie) => (
-          <div key={movie.id} className="movieCard">
+          <div
+            key={movie.id}
+            className="movieCard"
+            onClick={() => {
+              console.log("clicked")
+            return <Redirect to="/details" />}}
+          >
             <div className="image-area">
               <img
                 className="movieCard__image"
                 src={`${requests.baseImageURL}${movie.poster_path}`}
               />
               <div className="additionals">
-                <span className='favourites__icon'>
+                <span className="favourites__icon">
                   <i className="bx bx-heart heartIcon"></i>
                   <i className="bx bxs-heart heartIcon"></i>
                 </span>
