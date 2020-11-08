@@ -1,8 +1,7 @@
-const API_KEY = "26b98914bdfa3dc71c2d2c964644b132";
-
+export const API_KEY = "26b98914bdfa3dc71c2d2c964644b132";
 // fetchvideo details of the movie using youtube: https://api.themoviedb.org/3/movie/157336?api_key=26b98914bdfa3dc71c2d2c964644b132&append_to_response=videos,images
 
-const requests = {
+export const requests = {
   youtubeURL: `https://www.youtube.com/watch?v=`,
   baseImageURL: `https://image.tmdb.org/t/p/original/`,
   baseTmdbURL: `https://api.themoviedb.org/3`,
@@ -19,4 +18,3 @@ const requests = {
   // fetchTVDetails: `/tv/${tv_id}?api_key=${API_KEY}&append_to_response=videos,images`,
 };
 
-export default requests;

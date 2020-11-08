@@ -1,42 +1,38 @@
 import React, { useEffect, useState } from "react";
 import "./CSS/Header.css";
-import axios from "axios";
-import requests from "../requests";
+import Axios from "axios";
+import {requests} from "../requests";
 import { Link } from "react-router-dom";
-import Details from "../Pages/Detials";
 
 const Header = () => {
   const [trending, setTrending] = useState([]);
   const [banner, setBanner] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  // todo add a loader
+  // const [isLoading, setIsLoading] = useState(false);
+
 
   // todo:set interval for the repetative call of the trending movie
-  let movieIndex = 1;
+  // let movieIndex = 1;
 
-  // setInterval(() => {
-  //   if (movieIndex < trending?.length) {
-  //     setBanner(trending[movieIndex]);
-  //     movieIndex++;
-  //     // console.log(banner, movieIndex);
-  //   } else {
-  //     movieIndex = 0;
-  //     setBanner(trending[movieIndex]);
-  //   }
-  // }, 5000);
   // setIsLoading(true)
 
+
+  // todo Shift this function into utils as we will be using this function everywhere
   const fetchData = async () => {
-    const { data } = await axios.get(
+    const { data } = await Axios.get(
       `${requests.baseTmdbURL}${requests.fetchTrending}`
     );
     // setIsLoading(false);
     setTrending(data.results);
     setBanner(trending[0]);
+    console.log("banner",banner);
   };
 
   useEffect(() => {
     fetchData();
   }, []);
+
+
 
   // useEffect(() => {}, [banner]);
 
@@ -75,17 +71,22 @@ const Header = () => {
           <h1 className="banner__name">{trending[0]?.original_title}</h1>
           <div className="banner__buttons">
             <Link
-              to={`/details/${trending[0]?.id}`}
+              to={`/details/movie/${trending[0]?.id}`}
               className="btn banner__details-page"
             >
               See Details
             </Link>
             <Link
-              to="/getTrailer"
-              className="btn banner__trailer-link"
-              onClick={() => {
-                getBannerTrailer(trending[0]?.id);
+              to={{
+                pathname: "/search",
+                state: {
+                  id: trending[0]?.id,
+                },
               }}
+              className="btn banner__trailer-link"
+              // onClick={() => {
+              //   getBannerTrailer(trending[0]?.id);
+              // }}
             >
               Trailer
             </Link>
@@ -95,7 +96,7 @@ const Header = () => {
         <img
           className="banner__image"
           src={`${requests.baseImageURL}${trending[0]?.poster_path}`}
-          alt=""
+          alt="poster"
         />
       </div>
     </header>

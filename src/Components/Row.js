@@ -1,28 +1,24 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import requests from "../requests";
+import React, { useContext, useEffect, useState } from "react";
+import Axios from "axios";
+import {requests} from "../requests";
 import { truncateString } from "../utils/utils";
 import "./CSS/Row.css";
-import { Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { FavouritesContext } from "../Context/context";
 
-function Row({ fetchURL, title }) {
-  console.log("hello");
+function Row({ fetchURL, title, media_type }) {
 
   const [movies, setMovies] = useState([]);
-
-  console.log("fetchdata func ends here");
+  const [favourite, setFavourite] = useContext(FavouritesContext)
+  console.log(favourite);
 
   useEffect(() => {
-    console.log("enterd useEffect");
     const fetchData = async () => {
-      const { data } = await axios.get(`${requests.baseTmdbURL}${fetchURL}`);
-      console.log("data.results: ", data);
+      const { data } = await Axios.get(`${requests.baseTmdbURL}${fetchURL}`);
       setMovies(data.results);
-      console.log("movies state: ", movies);
     };
     fetchData();
   }, [fetchURL]);
-  console.log("movies state: ", movies);
 
   return (
     <div className="row">
@@ -33,22 +29,36 @@ function Row({ fetchURL, title }) {
       </div>
       <div className="row__content">
         {movies.map((movie) => (
-          <div
+          <Link
+            to={`/details/${movie.media_type || media_type}/${movie.id}`}
             key={movie.id}
             className="movieCard"
-            onClick={() => {
-              console.log("clicked")
-            return <Redirect to="/details" />}}
           >
             <div className="image-area">
               <img
                 className="movieCard__image"
                 src={`${requests.baseImageURL}${movie.poster_path}`}
+                alt='poster'
               />
+              {/* <div
+                className="movieCard__image"
+                style={{
+                  background: `url(${requests.baseImageURL}${movie.poster_path}) center center/cover`,
+
+                }}
+              ></div> */}
               <div className="additionals">
-                <span className="favourites__icon">
-                  <i className="bx bx-heart heartIcon"></i>
-                  <i className="bx bxs-heart heartIcon"></i>
+                <span className="favourites" onClick={()=>{setFavourite(!favourite)}}>
+                  {favourite === true ? (
+                    <i className="bx bxs-heart heartIcon"></i>
+                  ) : (
+                    <i className="bx bx-heart heartIcon "></i>
+                  )}
+                </span>
+
+                <span className="ratings">
+                  {movie?.vote_average}
+                  <i className="bx bx-star ratingsIcon"></i>
                 </span>
               </div>
             </div>
@@ -61,7 +71,7 @@ function Row({ fetchURL, title }) {
                 32
               )}
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
