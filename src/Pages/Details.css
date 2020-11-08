@@ -1,0 +1,45 @@
+.details{
+  color: #ECF0F1;
+  margin: auto;
+  height: 200vh;
+}
+.banner{
+  border: 2px solid red;
+}
+.title{
+  padding-top: 6rem;
+  font-size: 4rem;
+  text-align: center;
+}
+.details .rating{
+  margin: auto;
+  background: #28B463;
+  padding: .3rem .8rem;
+  width: 12rem;
+  border-radius: .5rem;
+  font-size: 2.6rem;
+  text-align: center;
+}
+.details .ratingIcon{
+  padding-left:.5rem ;
+}
+.details .main-details{
+  display: flex;
+  justify-content: space-between;
+  /* height: 80rem; */
+  max-width: 80%;
+  margin: auto;
+  border: 2px solid red;
+}
+
+.details .image-area{
+  width: 20rem;
+  border: 2px solid red;
+}
+.show__genres .genre__tagName{
+  background:#D35400;
+}
+.details .show__description{
+  width: 60%;
+  border: 2px solid blue;
+}

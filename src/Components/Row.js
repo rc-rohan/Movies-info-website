@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import Axios from "axios";
-import {requests} from "../requests";
+import { requests } from "../requests";
 import { truncateString } from "../utils/utils";
 import "./CSS/Row.css";
 import { Link } from "react-router-dom";
 import { FavouritesContext } from "../Context/context";
 
 function Row({ fetchURL, title, media_type }) {
-
   const [movies, setMovies] = useState([]);
-  const [favourite, setFavourite] = useContext(FavouritesContext)
+  const [favourite, setFavourite] = useContext(FavouritesContext);
   console.log(favourite);
 
   useEffect(() => {
@@ -38,7 +37,7 @@ function Row({ fetchURL, title, media_type }) {
               <img
                 className="movieCard__image"
                 src={`${requests.baseImageURL}${movie.poster_path}`}
-                alt='poster'
+                alt="poster"
               />
               {/* <div
                 className="movieCard__image"
@@ -48,7 +47,18 @@ function Row({ fetchURL, title, media_type }) {
                 }}
               ></div> */}
               <div className="additionals">
-                <span className="favourites" onClick={()=>{setFavourite(!favourite)}}>
+                <span
+                  className="favourites"
+                  onClick={() => {
+                    // todo check here using e.target.closet() property and don' redirect page
+                    setFavourite(...favourite, {
+                      id: movie.id,
+                      poster_path: movie.poster_path,
+                      title: movie.title,
+                      vote_average: movie.vote_average
+                    });
+                  }}
+                >
                   {favourite === true ? (
                     <i className="bx bxs-heart heartIcon"></i>
                   ) : (
@@ -56,9 +66,9 @@ function Row({ fetchURL, title, media_type }) {
                   )}
                 </span>
 
-                <span className="ratings">
+                <span className="rating">
                   {movie?.vote_average}
-                  <i className="bx bx-star ratingsIcon"></i>
+                  <i className="bx bx-star ratingIcon"></i>
                 </span>
               </div>
             </div>
