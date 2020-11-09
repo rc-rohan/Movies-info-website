@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Axios from "axios";
 import { requests } from "../requests";
-import { truncateString } from "../utils/utils";
+import { getFavourites, truncateString } from "../utils/utils";
 import { Link } from "react-router-dom";
 import { FavouritesContext } from "../Context/context";
 import "./CSS/Row.scss";
@@ -52,7 +52,7 @@ function Row({ fetchURL, title, media_type }) {
                     });
                   }}
                 >
-                  {favourite === true ? (
+                  {getFavourites(favourite,movie.id)===true? (
                     <i className="bx bxs-heart heartIcon"></i>
                   ) : (
                     <i className="bx bx-heart heartIcon "></i>

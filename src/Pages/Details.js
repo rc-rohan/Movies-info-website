@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Axios from "axios";
+import "./Details.scss";
 import { useParams } from "react-router-dom";
 import { API_KEY, requests } from "../requests";
-import "./Details.scss";
+import { FavouritesContext } from "../Context/context";
+import Row from '../Components/Row'
+import ReactPlayer from "react-player/youtube";
 
 function Details() {
   const { id, type } = useParams();
 
+  const [favourite, setFavourite] = useContext(FavouritesContext);
   const [showDetails, setShowDetails] = useState();
 
   // todo coditional fetching with url
@@ -43,7 +47,7 @@ function Details() {
           <i className="bx bx-star ratingIcon"></i>
         </p>
       </header>
-      <main  className='mainContent'>
+      <main className="mainContent">
         <section className="main-details">
           <div className="image-area">
             <img
@@ -53,7 +57,7 @@ function Details() {
           </div>
           <div className="show__description">
             <div className="show__overview">
-              <h1 >Overview:</h1>
+              <h1>Overview:</h1>
               <p>{showDetails?.overview}</p>
             </div>
             <div className="show__genres">
@@ -67,35 +71,43 @@ function Details() {
               <button className="btn btn-light">Add Favourites</button>
               <button className="btn btn-light">Trailer</button>
             </div>
-            <div className="additional_details">
+            <div className="additionalDetails">
               <span className="release-detials">
-                <small className="status">{showDetails?.status} </small>
-                <small>Release: </small>
-                <small>{showDetails?.release_date}</small>
+                <small className="status">
+                  {showDetails?.status} ({showDetails?.release_date})
+                </small>
               </span>
-              <a className="show__homepage" href={showDetails?.homepage}>
-                Homepage
-              </a>
+              <span className="show__homepage">
+                <i className="bx bx-link-alt icon"></i>
+                <a href={showDetails?.homepage}> Homepage</a>
+              </span>
             </div>
           </div>
         </section>
         <section className="show__images">
           {showDetails?.images.backdrops.map((image, index) => (
-            <span key="index" className="image-area">
+            <span key={index} className="image-area">
               <img src={`${requests.baseImageURL}${image.file_path}`} alt="" />
             </span>
           ))}
-          {/* {showDetails?.images.posters.map((image, index) => (
-            <span key="index" className="image-area">
-              <img src={`${requests.baseImageURL}${image.file_path}`} alt="" />
-            </span>
-          ))} */}
         </section>
-        <section className="youtubeTrailer">
-          {/* get the youtube trailer using react youtube */}
+        <section className="show__trailer">
+          <ReactPlayer
+            width="720px"
+            height="360px"
+            controls
+            url={`${requests.youtubeURL}${showDetails?.videos.results[0].key}`}
+          />
         </section>
         <section className="similar__shows">
-          {/* get the row component here */}
+          {/*
+            // todo add here row component and fetch data properly
+          */}
+          <Row
+            title={`Similar Shows`}
+            media_type={type}
+            fetchURL={`/${type}/${id}${requests.fetchSimialrShow}`}
+          />
         </section>
       </main>
     </div>

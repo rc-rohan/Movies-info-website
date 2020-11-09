@@ -3,7 +3,7 @@
   margin: auto;
   height: 200vh;
 
-  &__header {
+  .show__header {
     padding-top: 6rem;
     text-align: center;
 
@@ -13,7 +13,7 @@
 
     .show__tagline {
       font-size: 2rem;
-      margin: 1rem 0 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .rating {
@@ -31,24 +31,60 @@
   }
 
   .mainContent {
+    margin: 5rem 0;
     .main-details {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
+      align-items: flex-start;
       max-width: 80%;
       margin: 4rem auto;
 
       .image-area {
-        width: 22rem;
+        width: 25rem;
         border: 0.5rem solid #28b463;
         border-radius: 0.5rem;
       }
       .show__description {
-        width: 50%;
+        width: 40%;
         margin-right: 4rem;
-        border: 2px solid blue;
 
-        .show__genres .genre__tagName {
-          background: #d35400;
+        .show__overview {
+          h1 {
+            font-size: 3rem;
+          }
+          p {
+            font-size: 1.6rem;
+            margin: 1rem 0 2rem;
+          }
+        }
+
+        .show__genres {
+          display: flex;
+
+          .genre__tagName {
+            font-size: 1.4rem;
+            margin-right: 1rem;
+            border-radius: 0.5rem;
+            background: #d35400;
+            padding: 0.5rem 1rem;
+          }
+        }
+        .additionalDetails {
+          font-size: 1.4rem;
+
+          .release-detials .status {
+            background: #21618c;
+            padding: 0.5rem 1rem;
+            margin-bottom: 2rem;
+            display: block;
+            width: 18rem;
+            text-align: center;
+            border-radius: 0.2rem;
+          }
+
+          .show__homepage {
+            font-size: 1.5rem;
+          }
         }
       }
     }
@@ -56,8 +92,17 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      border: .5rem solid #ecf0f1;
-      border-radius:.5rem ;
+      border: 0.5rem solid #ecf0f1;
+      border-radius: 0.5rem;
+
+      .image-area {
+        width: 25%;
+      }
+    }
+    .show__trailer{
+      margin: 8rem 0;
+      display: flex;
+      justify-content:center;
     }
   }
 }
