@@ -1,0 +1,37 @@
+.banner {
+  height: 448px;
+  /* adjust the image full length */
+  object-fit: contain;
+
+  &__image {
+    object-fit: contain;
+    width: 18%;
+    margin-right: 5rem;
+    border: 0.5rem solid #ecf0f1;
+    border-radius: 0.5rem;
+  }
+  /* &__image:hover{
+  border: .5rem solid #EC7063;
+} */
+
+  &__content {
+    padding: 4rem 4rem;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__name {
+      margin-top: 8rem;
+      font-size: 3rem;
+      font-family: "Syne Mono", monospace;
+    }
+
+     .banner__description {
+      width: 40rem;
+      font-family: "Syne Mono", monospace;
+      line-height: 2rem;
+      font-size: 1.6rem;
+    }
+  }
+}

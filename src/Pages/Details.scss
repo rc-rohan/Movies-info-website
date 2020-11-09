@@ -1,0 +1,63 @@
+#show {
+  color: #ecf0f1;
+  margin: auto;
+  height: 200vh;
+
+  &__header {
+    padding-top: 6rem;
+    text-align: center;
+
+    .show__title {
+      font-size: 5rem;
+    }
+
+    .show__tagline {
+      font-size: 2rem;
+      margin: 1rem 0 2rem;
+    }
+
+    .rating {
+      margin: auto;
+      background: #28b463;
+      padding: 0.3rem 0.8rem;
+      width: 15rem;
+      border-radius: 0.5rem;
+      font-size: 2.6rem;
+      text-align: center;
+    }
+    .ratingIcon {
+      padding-left: 0.5rem;
+    }
+  }
+
+  .mainContent {
+    .main-details {
+      display: flex;
+      justify-content: space-between;
+      max-width: 80%;
+      margin: 4rem auto;
+
+      .image-area {
+        width: 22rem;
+        border: 0.5rem solid #28b463;
+        border-radius: 0.5rem;
+      }
+      .show__description {
+        width: 50%;
+        margin-right: 4rem;
+        border: 2px solid blue;
+
+        .show__genres .genre__tagName {
+          background: #d35400;
+        }
+      }
+    }
+    .show__images {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      border: .5rem solid #ecf0f1;
+      border-radius:.5rem ;
+    }
+  }
+}

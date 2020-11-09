@@ -2,14 +2,10 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { useParams } from "react-router-dom";
 import { API_KEY, requests } from "../requests";
-import "./Details.css";
+import "./Details.scss";
 
-function Details({ match }) {
-  // const data = useParams();
-  // console.log(data);
-  const id = match.params.id;
-  const type = match.params.type;
-  // console.log(match);
+function Details() {
+  const { id, type } = useParams();
 
   const [showDetails, setShowDetails] = useState();
 
@@ -31,23 +27,23 @@ function Details({ match }) {
   }, [id]);
   return (
     <div
-      className="details"
+      id="show"
       style={{
         background: `linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.7),rgba(0,0,0,1))
                         no-repeat top left/100vw 130vh,
                       url(${requests.baseImageURL}${showDetails?.backdrop_path})
                         no-repeat top left/100vw 120vh`,
-        // backgroundSize: `100vw 100vh`
       }}
     >
-      <header className="show__banner">
-        <h1 className="title">{showDetails?.title}</h1>
+      <header className="show__header">
+        <h1 className="show__title">{showDetails?.title}</h1>
+        <h5 className="show__tagline">{showDetails?.tagline}</h5>
         <p className="rating">
           {showDetails?.vote_average}/10
           <i className="bx bx-star ratingIcon"></i>
         </p>
       </header>
-      <main className="mainContent">
+      <main  className='mainContent'>
         <section className="main-details">
           <div className="image-area">
             <img
@@ -57,12 +53,12 @@ function Details({ match }) {
           </div>
           <div className="show__description">
             <div className="show__overview">
-              <h1>Overview</h1>
+              <h1 >Overview:</h1>
               <p>{showDetails?.overview}</p>
             </div>
             <div className="show__genres">
               {showDetails?.genres.map((genre) => (
-                <span className="genre__tagName">
+                <span key={genre.id} className="genre__tagName">
                   <strong>{genre.name}</strong>
                 </span>
               ))}
@@ -83,8 +79,17 @@ function Details({ match }) {
             </div>
           </div>
         </section>
-        <section className="imagesCollage">
-          {/* show all the collections of images here */}
+        <section className="show__images">
+          {showDetails?.images.backdrops.map((image, index) => (
+            <span key="index" className="image-area">
+              <img src={`${requests.baseImageURL}${image.file_path}`} alt="" />
+            </span>
+          ))}
+          {/* {showDetails?.images.posters.map((image, index) => (
+            <span key="index" className="image-area">
+              <img src={`${requests.baseImageURL}${image.file_path}`} alt="" />
+            </span>
+          ))} */}
         </section>
         <section className="youtubeTrailer">
           {/* get the youtube trailer using react youtube */}

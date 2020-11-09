@@ -1,21 +1,19 @@
 import React, { useState } from "react";
-import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
-import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.scss";
 import Favourites from "./Pages/Favourites";
 import Home from "./Pages/Home";
 import Details from "./Pages/Details";
 import Search from "./Pages/Search";
 import PageNotFound from "./Pages/PageNotFound";
-import {FavouritesContext} from './Context/context'
+import { FavouritesContext } from "./Context/context";
 
 // todo add import for toastify whenever user click upon the page favourites icon
-
 
 const App = () => {
   // todo add theme context
 
-
-  const favourites = useState([])
+  const favourites = useState([]);
   // todo set all favourites movie to the localStorage with all the image id and name and rating
 
   return (

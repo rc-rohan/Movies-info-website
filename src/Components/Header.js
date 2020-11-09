@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./CSS/Header.css";
+import "./CSS/Header.scss";
 import Axios from "axios";
 import {requests} from "../requests";
 import { Link } from "react-router-dom";
@@ -72,7 +72,7 @@ const Header = () => {
           <div className="banner__buttons">
             <Link
               to={`/details/movie/${trending[0]?.id}`}
-              className="btn banner__details-page"
+              className="btn "
             >
               See Details
             </Link>
@@ -83,7 +83,7 @@ const Header = () => {
                   id: trending[0]?.id,
                 },
               }}
-              className="btn banner__trailer-link"
+              className="btn "
               // onClick={() => {
               //   getBannerTrailer(trending[0]?.id);
               // }}

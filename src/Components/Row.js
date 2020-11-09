@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import Axios from "axios";
 import { requests } from "../requests";
 import { truncateString } from "../utils/utils";
-import "./CSS/Row.css";
 import { Link } from "react-router-dom";
 import { FavouritesContext } from "../Context/context";
+import "./CSS/Row.scss";
 
 function Row({ fetchURL, title, media_type }) {
   const [movies, setMovies] = useState([]);
@@ -39,14 +39,7 @@ function Row({ fetchURL, title, media_type }) {
                 src={`${requests.baseImageURL}${movie.poster_path}`}
                 alt="poster"
               />
-              {/* <div
-                className="movieCard__image"
-                style={{
-                  background: `url(${requests.baseImageURL}${movie.poster_path}) center center/cover`,
-
-                }}
-              ></div> */}
-              <div className="additionals">
+              <div >
                 <span
                   className="favourites"
                   onClick={() => {
