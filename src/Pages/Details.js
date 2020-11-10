@@ -13,6 +13,7 @@ function Details() {
   const [favourite, setFavourite] = useContext(FavouritesContext);
   const [showDetails, setShowDetails] = useState();
 
+
   // todo coditional fetching with url
   // fetchMovieDetails: `/movie/${movie_id}?api_key=${API_KEY}&append_to_response=videos,images`,
   // fetchTVDetails: `/tv/${tv_id}?api_key=${API_KEY}&append_to_response=videos,images`,
@@ -22,7 +23,6 @@ function Details() {
     const { data } = await Axios.get(
       `${requests.baseTmdbURL}/${type}/${id}?api_key=${API_KEY}&append_to_response=videos,images,similar`
     );
-    console.log(data);
     setShowDetails(data);
   };
 

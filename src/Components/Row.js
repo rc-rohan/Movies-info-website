@@ -9,7 +9,8 @@ import "./CSS/Row.scss";
 function Row({ fetchURL, title, media_type }) {
   const [movies, setMovies] = useState([]);
   const [favourite, setFavourite] = useContext(FavouritesContext);
-  console.log(favourite);
+
+  // todo add useEffect for favourites change for the addition to the lcalstorage
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,53 +29,61 @@ function Row({ fetchURL, title, media_type }) {
       </div>
       <div className="row__content">
         {movies.map((movie) => (
-          <Link
-            to={`/details/${movie.media_type || media_type}/${movie.id}`}
-            key={movie.id}
-            className="movieCard"
-          >
-            <div className="image-area">
-              <img
-                className="movieCard__image"
-                src={`${requests.baseImageURL}${movie.poster_path}`}
-                alt="poster"
-              />
-              <div >
-                <span
-                  className="favourites"
-                  onClick={() => {
-                    // todo check here using e.target.closet() property and don' redirect page
-                    setFavourite(...favourite, {
-                      id: movie.id,
-                      poster_path: movie.poster_path,
-                      title: movie.title,
-                      vote_average: movie.vote_average
-                    });
-                  }}
-                >
-                  {getFavourites(favourite,movie.id)===true? (
-                    <i className="bx bxs-heart heartIcon"></i>
-                  ) : (
-                    <i className="bx bx-heart heartIcon "></i>
-                  )}
-                </span>
-
-                <span className="rating">
-                  {movie?.vote_average}
-                  <i className="bx bx-star ratingIcon"></i>
-                </span>
-              </div>
-            </div>
-            <div className="movieCard__name">
-              {truncateString(
-                movie.title ||
-                  movie.original_title ||
-                  movie.original_name ||
-                  movie.name,
-                32
+          <div className="show__details">
+            <span
+              className="favourites"
+              onClick={() => {
+                if (getFavourites(favourite, movie.id) === -1) {
+                  setFavourite([
+                    ...favourite,
+                    {
+                      id: movie?.id,
+                      poster_path: movie?.poster_path,
+                      title: movie?.title,
+                      vote_average: movie?.vote_average,
+                    },
+                  ]);
+                } else {
+                  setFavourite(favourite.filter((el) => el.id !== movie.id));
+                }
+              }}
+            >
+              {favourite.some((el) => el.id === movie?.id) === true ? (
+                <i className="bx bxs-heart heartIcon"></i>
+              ) : (
+                <i className="bx bx-heart heartIcon "></i>
               )}
-            </div>
-          </Link>
+            </span>
+
+            <Link
+              to={`/details/${movie.media_type || media_type}/${movie.id}`}
+              key={movie.id}
+              className="movieCard"
+            >
+              <div className="image-area">
+                <img
+                  className="movieCard__image"
+                  src={`${requests.baseImageURL}${movie.poster_path}`}
+                  alt="poster"
+                />
+                <div>
+                  <span className="rating">
+                    {movie?.vote_average}
+                    <i className="bx bx-star ratingIcon"></i>
+                  </span>
+                </div>
+              </div>
+              <strong className="movieCard__name">
+                {truncateString(
+                  movie.title ||
+                    movie.original_title ||
+                    movie.original_name ||
+                    movie.name,
+                  40
+                )}
+              </strong>
+            </Link>
+          </div>
         ))}
       </div>
     </div>
